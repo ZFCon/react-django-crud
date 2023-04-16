@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState, useContext } from 'react';
+import { NotesContext } from '../context/NotesContext';
 
-const Note = ({ notes, setNotes }) => {
+const CreateNote = () => {
   const [text, setText] = useState('');
+  const { addNote } = useContext(NotesContext);
 
   const handleChange = (event) => {
     setText(event.target.value);
@@ -10,14 +11,8 @@ const Note = ({ notes, setNotes }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios.post('http://127.0.0.1:8000/api/notes/', { "text": text })
-      .then(response => {
-        setNotes([response.data, ...notes]);
-        setText('');
-      })
-      .catch(error => {
-        console.error(error);
-      });
+    addNote(text);
+    setText('');
   };
 
   return (
@@ -39,4 +34,4 @@ const Note = ({ notes, setNotes }) => {
   );
 };
 
-export default Note;
+export default CreateNote;

@@ -1,36 +1,23 @@
 import './App.css';
-import Note from './components/note';
-import NoteList from './components/noteList';
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Home from './components/Home';
+import UpdateNote from './components/UpdateNote';
+import { NotesProvider } from './context/NotesContext';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
-  let [notes, setNotes] = useState([]);
-
-  useEffect(() => {
-    // Fetch the list of notes from the Django backend
-    axios.get('http://127.0.0.1:8000/api/notes/')
-      .then(response => {
-        console.log(response.data);
-        setNotes(response.data);
-      })
-      .catch(error => {
-        console.error(error);
-      });
-  }, []);
-
   return (
-    <div className="App">
-      <header className="App-header">
-      </header>
-      <body>
-        <div className='container'>
-          <NoteList notes={notes} setNotes={setNotes}></NoteList>
-          <Note notes={notes} setNotes={setNotes}></Note>
-        </div>
-      </body>
+    <div className='container'>
+      <BrowserRouter>
+        <NotesProvider>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/note/:id" element={<UpdateNote />} />
+          </Routes>
+        </NotesProvider>
+      </BrowserRouter>
     </div>
   );
 }

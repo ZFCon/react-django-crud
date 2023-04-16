@@ -1,10 +1,9 @@
-import axios from 'axios';
+import { Link } from 'react-router-dom';
+import { NotesContext } from '../context/NotesContext';
+import { useContext } from 'react';
 
-const NoteList = ({ notes, setNotes }) => {
-    const handleDelete = (id) => {
-        axios.delete(`http://127.0.0.1:8000/api/notes/${id}/`).then(response => setNotes(notes.filter(note => note.id !== id))).catch(error => console.error(error))
-        console.log(`Deleted ${id}`);
-    };
+const NoteList = () => {
+    const { notes, deleteNote } = useContext(NotesContext);
 
     return (
         <div>
@@ -18,14 +17,17 @@ const NoteList = ({ notes, setNotes }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {notes.map(note => (
+                    {notes.map((note) => (
                         <tr key={note.id}>
                             <td>{note.id}</td>
                             <td>{note.text}</td>
                             <td>
+                                <Link to={`/note/${note.id}`}>
+                                    <button className="btn btn-primary mx-1">Update</button>
+                                </Link>
                                 <button
-                                    className="btn btn-danger"
-                                    onClick={() => handleDelete(note.id)}
+                                    className="btn btn-danger mx-1"
+                                    onClick={() => deleteNote(note.id)}
                                 >
                                     Delete
                                 </button>
