@@ -22,15 +22,17 @@ const Note = () => {
 
   return (
     <form onSubmit={handleSubmit}>
+      <h1>Create your note</h1>
       <textarea
         value={text}
         onChange={handleChange}
+        className='form-control'
         placeholder="Type your note here..."
-        rows="10"
-        cols="50"
+        rows="20"
+        cols="80"
       />
       <br />
-      <button type="submit">Save</button>
+      <button type="submit" className='btn btn-primary px-5'>Save</button>
     </form>
   );
 };

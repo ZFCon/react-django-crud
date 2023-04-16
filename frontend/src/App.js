@@ -1,6 +1,8 @@
 import './App.css';
 import Note from './components/note';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 function App() {
   return (
     <div className="App">
