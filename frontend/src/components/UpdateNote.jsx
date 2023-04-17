@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { NotesContext } from '../context/NotesContext'
+import { NotesContext } from '../context/NotesContext';
 
 const UpdateNote = () => {
   const { id } = useParams();

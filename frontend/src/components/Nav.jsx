@@ -1,9 +1,12 @@
-import React from 'react'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Nav() {
   return (
     <div>
-      <a href="#" className="btn btn-success float-end m-3">Login</a>
+      <Link to="/login">
+        <button className="btn btn-sucees float-end m-3">Login</button>
+      </Link>
     </div>
   )
 }
