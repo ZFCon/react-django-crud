@@ -6,10 +6,12 @@ import UpdateNote from './components/UpdateNote';
 import { NotesProvider } from './context/NotesContext';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Nav from './components/Nav';
 
 function App() {
   return (
     <div className='container'>
+      <Nav></Nav>
       <BrowserRouter>
         <NotesProvider>
           <Routes>
